@@ -1,0 +1,26 @@
+apiVersion: v1
+data:
+  admin.enabled: 'false'
+  statusbadge.enabled: 'true'
+  users.anonymous.enabled: 'false'
+  url: https://argocd.infra.plint.dev
+  repository.credentials: |
+    - url: git@github.com
+      sshPrivateKeySecret:
+        name: githubsecret
+        key: sshPrivateKey
+  dex.config: |
+    connectors:
+    - type: github
+      id: github
+      name: GitHub
+      config:
+        clientID: fb12b314b0d4e211b608
+        clientSecret: $dex.github.clientSecret
+        orgs:
+        - name: NUAB
+          teams:
+          - DevOps
+kind: ConfigMap
+metadata:
+  name: argocd-cm
