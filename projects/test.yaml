@@ -32,8 +32,8 @@ metadata:
 spec:
   generators:
     - git:
-        files:
-          - path: apps/**/test/config.json
+        directories:
+          - path: apps/test/*
         repoURL: git@github.com:NUAB/argocd_applications.git
         revision: HEAD
         requeueAfterSeconds: 20
@@ -49,11 +49,12 @@ spec:
     metadata:
       labels:
         app.kubernetes.io/managed-by: argocd
-        app.kubernetes.io/name: '{{ appName }}'
-      name: test-{{ appName }}
+        app.kubernetes.io/name: '{{ path.basename }}'
+      name: '{{ path.basename }}'
     spec:
       destination:
-        namespace: 'test'
+        # TODO Setup test cluster here!
+        namespace: test
         name: 'in-cluster'
       ignoreDifferences:
         - group: argoproj.io
@@ -62,7 +63,7 @@ spec:
           kind: Application
       project: test
       source:
-        path: '{{ srcPath }}'
+        path: '{{ path }}'
         repoURL: git@github.com:NUAB/argocd_applications.git
         targetRevision: HEAD
       syncPolicy:
