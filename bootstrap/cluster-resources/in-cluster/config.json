@@ -1,1 +1,7 @@
-{"server":"https://kubernetes.default.svc"}
+{
+  "cluster": {
+    "name": "in-cluster",
+    "url": "https://kubernetes.default.svc"
+  },
+  "destination_project": "default"
+}

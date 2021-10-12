@@ -4,16 +4,16 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-options: PruneLast=true
     argocd.argoproj.io/sync-wave: "-2"
-  name: prod
+  name: production
   namespace: argocd
 spec:
   clusterResourceWhitelist:
   - group: '*'
     kind: '*'
-  description: prod project
+  description: production project
   destinations:
   - namespace: '*'
-    server: '*'
+    server: 'production'
   namespaceResourceWhitelist:
   - group: '*'
     kind: '*'
@@ -27,13 +27,13 @@ kind: ApplicationSet
 metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "0"
-  name: prod
+  name: production
   namespace: argocd
 spec:
   generators:
   - git:
-      files:
-      - path: apps/**/prod/config.json
+      directories:
+      - path: apps/production/*
       repoURL: git@github.com:NUAB/argocd_applications.git
       revision: HEAD
       requeueAfterSeconds: 20
@@ -49,20 +49,20 @@ spec:
     metadata:
       labels:
         app.kubernetes.io/managed-by: argocd
-        app.kubernetes.io/name: '{{ appName }}'
-      name: prod-{{ appName }}
+        app.kubernetes.io/name: '{{ path.basename }}'
+      name: production-{{ path.basename }}
     spec:
       destination:
         namespace: argocd
-        name: 'in-cluster'
+        name: 'production'
       ignoreDifferences:
       - group: argoproj.io
         jsonPointers:
         - /status
         kind: Application
-      project: prod
+      project: production
       source:
-        path: '{{ srcPath }}'
+        path: '{{ path }}'
         repoURL: git@github.com:NUAB/argocd_applications.git
         targetRevision: HEAD
       syncPolicy:
