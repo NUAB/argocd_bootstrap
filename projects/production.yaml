@@ -12,13 +12,13 @@ spec:
     kind: '*'
   description: production project
   destinations:
-  - namespace: '*'
-    server: 'production'
+    - namespace: '*'
+      server: 'https://api.k8s.plint.io'
   namespaceResourceWhitelist:
-  - group: '*'
-    kind: '*'
+    - group: '*'
+      kind: '*'
   sourceRepos:
-  - '*'
+    - '*'
 status: {}
 
 ---
@@ -31,19 +31,19 @@ metadata:
   namespace: argocd
 spec:
   generators:
-  - git:
-      directories:
-      - path: apps/production/*
+    - git:
+        directories:
+          - path: apps/production/*
       repoURL: git@github.com:NUAB/argocd_applications.git
-      revision: HEAD
-      requeueAfterSeconds: 20
-      template:
-        metadata: {}
-        spec:
-          destination: {}
-          project: ""
-          source:
-            repoURL: ""
+        revision: HEAD
+        requeueAfterSeconds: 20
+        template:
+          metadata: {}
+          spec:
+            destination: {}
+            project: ""
+            source:
+              repoURL: ""
   syncPolicy: {}
   template:
     metadata:
@@ -53,13 +53,13 @@ spec:
       name: production-{{ path.basename }}
     spec:
       destination:
-        namespace: argocd
-        name: 'production'
+        namespace: default
+        server: 'https://api.k8s.plint.io'
       ignoreDifferences:
-      - group: argoproj.io
-        jsonPointers:
-        - /status
-        kind: Application
+        - group: argoproj.io
+          jsonPointers:
+            - /status
+          kind: Application
       project: production
       source:
         path: '{{ path }}'
