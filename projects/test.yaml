@@ -19,7 +19,7 @@ spec:
       kind: '*'
   sourceRepos:
     - '*'
-status: {}
+status: { }
 
 ---
 apiVersion: argoproj.io/v1alpha1
@@ -38,19 +38,19 @@ spec:
         revision: HEAD
         requeueAfterSeconds: 20
         template:
-          metadata: {}
+          metadata: { }
           spec:
-            destination: {}
+            destination: { }
             project: ""
             source:
               repoURL: ""
-  syncPolicy: {}
+  syncPolicy: { }
   template:
     metadata:
       labels:
         app.kubernetes.io/managed-by: argocd
         app.kubernetes.io/name: '{{ path.basename }}'
-      name: test-{{ path.basename }}
+      name: 'test-{{ path.basename }}'
     spec:
       destination:
         namespace: default
@@ -70,4 +70,4 @@ spec:
           allowEmpty: true
           prune: true
           selfHeal: true
-status: {}
+status: { }

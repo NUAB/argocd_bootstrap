@@ -8,8 +8,8 @@ metadata:
   namespace: argocd
 spec:
   clusterResourceWhitelist:
-  - group: '*'
-    kind: '*'
+    - group: '*'
+      kind: '*'
   description: production project
   destinations:
     - namespace: '*'
@@ -19,7 +19,7 @@ spec:
       kind: '*'
   sourceRepos:
     - '*'
-status: {}
+status: { }
 
 ---
 apiVersion: argoproj.io/v1alpha1
@@ -34,23 +34,23 @@ spec:
     - git:
         directories:
           - path: apps/production/*
-      repoURL: git@github.com:NUAB/argocd_applications.git
+        repoURL: git@github.com:NUAB/argocd_applications.git
         revision: HEAD
         requeueAfterSeconds: 20
         template:
-          metadata: {}
+          metadata: { }
           spec:
-            destination: {}
+            destination: { }
             project: ""
             source:
               repoURL: ""
-  syncPolicy: {}
+  syncPolicy: { }
   template:
     metadata:
       labels:
         app.kubernetes.io/managed-by: argocd
         app.kubernetes.io/name: '{{ path.basename }}'
-      name: production-{{ path.basename }}
+      name: 'production-{{ path.basename }}'
     spec:
       destination:
         namespace: default
@@ -70,4 +70,4 @@ spec:
           allowEmpty: true
           prune: true
           selfHeal: true
-status: {}
+status: { }
