@@ -1,0 +1,93 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: deliverybot
+data:
+  LOG_LEVEL: "debug"
+  NODE_ENV: "production"
+  BASE_URL: "https://delivery.infra.plint.dev"
+---
+apiVersion: kubernetes-client.io/v1
+kind: ExternalSecret
+metadata:
+  name: deliverybot
+spec:
+  backendType: secretsManager
+  dataFrom:
+  - deliverybot
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deliverybot
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: deliverybot
+  template:
+    metadata:
+      labels:
+        app: deliverybot
+    spec:
+      containers:
+      - image: ghcr.io/opzkit/deliverybot:v0.7.2
+        imagePullPolicy: IfNotPresent
+        name: deliverybot
+        envFrom:
+        - configMapRef:
+            name: deliverybot
+            optional: false
+        - secretRef:
+            name: deliverybot
+        ports:
+        - name: "http"
+          containerPort: 3000
+        resources:
+          limits:
+            cpu: "200m"
+            memory: "400Mi"
+          requests:
+            cpu: "50m"
+            memory: "128Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: deliverybot
+spec:
+  ports:
+  - port: 80
+    targetPort: 3000
+    name: "http"
+  selector:
+    app: deliverybot
+  type: NodePort
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/group.name: default
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/backend-protocol: HTTP
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
+    alb.ingress.kubernetes.io/ssl-redirect: "443"
+    alb.ingress.kubernetes.io/healthcheck-path: /health
+  name: deliverybot
+spec:
+  rules:
+  - host: delivery.infra.plint.dev
+    http:
+      paths:
+      - backend:
+          service:
+            name: deliverybot
+            port:
+              name: "http"
+        pathType: ImplementationSpecific
+  tls:
+  - hosts:
+    - delivery.infra.plint.dev
