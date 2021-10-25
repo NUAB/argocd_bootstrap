@@ -1,7 +1,13 @@
 apiVersion: v1
+kind: Namespace
+metadata:
+  name: deliverybot
+---
+apiVersion: v1
 kind: ConfigMap
 metadata:
   name: deliverybot
+  namespace: deliverybot
 data:
   LOG_LEVEL: "debug"
   NODE_ENV: "production"
@@ -11,6 +17,7 @@ apiVersion: kubernetes-client.io/v1
 kind: ExternalSecret
 metadata:
   name: deliverybot
+  namespace: deliverybot
 spec:
   backendType: secretsManager
   dataFrom:
@@ -20,6 +27,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: deliverybot
+  namespace: deliverybot
 spec:
   replicas: 1
   revisionHistoryLimit: 3
@@ -56,6 +64,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: deliverybot
+  namespace: deliverybot
 spec:
   ports:
   - port: 80
@@ -77,6 +86,7 @@ metadata:
     alb.ingress.kubernetes.io/ssl-redirect: "443"
     alb.ingress.kubernetes.io/healthcheck-path: /health
   name: deliverybot
+  namespace: deliverybot
 spec:
   rules:
   - host: delivery.infra.plint.dev
