@@ -1,0 +1,7 @@
+{
+  "cluster": {
+    "name": "staging",
+    "url": "https://api.k8s.staging.plint.dev"
+  },
+  "destination_project": "staging"
+}

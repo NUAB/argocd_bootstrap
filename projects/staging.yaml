@@ -4,16 +4,16 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-options: PruneLast=true
     argocd.argoproj.io/sync-wave: "-2"
-  name: test
+  name: staging
   namespace: argocd
 spec:
   clusterResourceWhitelist:
     - group: '*'
       kind: '*'
-  description: test project
+  description: staging project
   destinations:
     - namespace: '*'
-      server: 'https://api.k8s.dev.plint.dev'
+      server: 'https://api.k8s.staging.plint.dev'
   namespaceResourceWhitelist:
     - group: '*'
       kind: '*'
@@ -27,13 +27,13 @@ kind: ApplicationSet
 metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "0"
-  name: test
+  name: staging
   namespace: argocd
 spec:
   generators:
     - git:
         directories:
-          - path: apps/test/*
+          - path: apps/staging/*
         repoURL: git@github.com:NUAB/argocd_applications.git
         revision: HEAD
         requeueAfterSeconds: 20
@@ -50,17 +50,17 @@ spec:
       labels:
         app.kubernetes.io/managed-by: argocd
         app.kubernetes.io/name: '{{ path.basename }}'
-      name: 'test-{{ path.basename }}'
+      name: 'staging-{{ path.basename }}'
     spec:
       destination:
         namespace: default
-        server: 'https://api.k8s.dev.plint.dev'
+        server: 'https://api.k8s.staging.plint.dev'
       ignoreDifferences:
         - group: argoproj.io
           jsonPointers:
             - /status
           kind: Application
-      project: test
+      project: staging
       source:
         path: '{{ path }}'
         repoURL: git@github.com:NUAB/argocd_applications.git
