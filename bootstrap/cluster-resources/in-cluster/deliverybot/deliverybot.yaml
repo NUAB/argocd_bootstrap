@@ -40,7 +40,7 @@ spec:
         app: deliverybot
     spec:
       containers:
-      - image: ghcr.io/opzkit/deliverybot:v0.7.2
+      - image: ghcr.io/opzkit/deliverybot:v0.7.3
         imagePullPolicy: IfNotPresent
         name: deliverybot
         envFrom:
