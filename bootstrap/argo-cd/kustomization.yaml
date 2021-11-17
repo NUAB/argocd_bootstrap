@@ -10,6 +10,7 @@ resources:
 patchesStrategicMerge:
   - overlays/argocd-cm.yaml
   - overlays/argocd-rbac-cm.yaml
+  - overlays/argocd-ssh-known-hosts-cm.yaml
   - overlays/argocd-cmd-params-cm.yaml
   - overlays/argocd-server-service.yaml
   - overlays/argocd-repo-server-resources.yaml
