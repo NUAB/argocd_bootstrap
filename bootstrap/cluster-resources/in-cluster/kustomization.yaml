@@ -3,7 +3,7 @@ kind: Kustomization
 
 resources:
 - external-dns
-- fluent
+#- fluent
 - github-runners
 - deliverybot
 
