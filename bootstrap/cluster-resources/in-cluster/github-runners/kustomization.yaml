@@ -8,3 +8,7 @@ resources:
 
 patchesStrategicMerge:
   - rbac-proxy-resources.yaml
+  - controller-manager-resources.yaml
+  - namespace-delete.yaml
+  -
+namespace: github-runners
