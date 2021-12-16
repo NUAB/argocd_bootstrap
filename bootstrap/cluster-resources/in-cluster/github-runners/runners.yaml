@@ -18,18 +18,25 @@ spec:
       workDir: /home/runner/work
       resources:
         limits:
-          cpu: "1"
+          cpu: "2"
           memory: "4Gi"
         requests:
-          cpu: "500m"
-          memory: "1Gi"
+          cpu: "1"
+          memory: "2Gi"
       dockerdContainerResources:
         limits:
-          cpu: "1"
+          cpu: "2"
           memory: "4Gi"
         requests:
-          cpu: "500m"
-          memory: "1Gi"
+          cpu: "1"
+          memory: "2Gi"
+      tolerations:
+        - key: tasks
+          operator: "Equal"
+          value: runners
+          effect: NoSchedule
+      nodeSelector:
+        "tasks": "runners"
       volumeMounts:
         - mountPath: home/runner/.buildtools.yaml
           name: buildtools-config
