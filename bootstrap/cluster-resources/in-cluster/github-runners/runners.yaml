@@ -26,7 +26,7 @@ spec:
       dockerdContainerResources:
         limits:
           cpu: "2"
-          memory: "4Gi"
+          memory: "6Gi"
         requests:
           cpu: "1"
           memory: "2Gi"
