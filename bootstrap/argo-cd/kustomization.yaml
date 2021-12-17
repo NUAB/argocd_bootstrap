@@ -6,6 +6,7 @@ resources:
   - https://raw.githubusercontent.com/argoproj/argo-cd/v2.1.3/manifests/install.yaml
   - https://raw.githubusercontent.com/argoproj-labs/applicationset/v0.2.0/manifests/install.yaml
   - base/argocd-ui-ingress.yaml
+  - base/argocd-secrets.yaml
 
 patchesStrategicMerge:
   - overlays/argocd-cm.yaml
