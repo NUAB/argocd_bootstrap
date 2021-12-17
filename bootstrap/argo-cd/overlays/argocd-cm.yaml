@@ -16,7 +16,7 @@ data:
       name: GitHub
       config:
         clientID: fb12b314b0d4e211b608
-        clientSecret: $dex.github.clientSecret
+        clientSecret: $dex-client-secret:clientSecret
         orgs:
         - name: NUAB
           teams:
