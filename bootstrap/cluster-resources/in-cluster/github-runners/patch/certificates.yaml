@@ -1,0 +1,9 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: serving-cert
+  namespace: actions-runner-system
+spec:
+  dnsNames:
+    - webhook-service.github-runners.svc
+    - webhook-service.github-runners.svc.cluster.local

@@ -16,6 +16,7 @@ spec:
       image: summerwind/actions-runner-dind
       dockerdWithinRunnerContainer: true
       workDir: /home/runner/work
+      ephemeral: true
       resources:
         limits:
           cpu: "2"
@@ -44,9 +45,9 @@ spec:
         - mountPath: home/runner/.ssh
           name: ssh-secret
       volumes:
-        - configMap:
-            name: buildtools
-          name: buildtools-config
+        - name: buildtools-config
+          secret:
+            secretName: buildtools
         - name: ssh-secret
           secret:
             secretName: ssh-secret

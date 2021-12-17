@@ -3,13 +3,15 @@ kind: Kustomization
 
 resources:
   - https://github.com/actions-runner-controller/actions-runner-controller/releases/download/v0.20.4/actions-runner-controller.yaml
-  - runners.yaml
-  - webhookserver.yaml
-  - secrets.yaml
+  - base/runners.yaml
+  - base/webhookserver.yaml
+  - base/secrets.yaml
 
 patchesStrategicMerge:
-  - rbac-proxy-resources.yaml
-  - controller-manager-resources.yaml
-  - namespace-delete.yaml
+  - patch/rbac-proxy-resources.yaml
+  - patch/controller-manager-resources.yaml
+  - patch/namespace-delete.yaml
+  - patch/certificates.yaml
+  - patch/webhook-config.yaml
 
 namespace: github-runners
