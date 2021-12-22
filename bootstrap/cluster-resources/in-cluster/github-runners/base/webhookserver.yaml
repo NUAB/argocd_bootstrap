@@ -159,9 +159,9 @@ spec:
             - name: GITHUB_WEBHOOK_SECRET_TOKEN
               valueFrom:
                 secretKeyRef:
-                  key: github_webhook_secret_token
+                  key: GITHUB_WEBHOOK_SECRET_TOKEN
                   name: github-webhook-server
-                  optional: true
+                  optional: false
           image: "summerwind/actions-runner-controller:v0.20.3"
           name: github-webhook-server
           imagePullPolicy: IfNotPresent
