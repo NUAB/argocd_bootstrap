@@ -21,6 +21,7 @@ data:
         - name: NUAB
           teams:
           - DevOps
+          - Devies
 kind: ConfigMap
 metadata:
   name: argocd-cm
