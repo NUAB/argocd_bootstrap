@@ -22,6 +22,8 @@ data:
           teams:
           - DevOps
           - Devies
+          - Admins
+          - PlintInternal
 kind: ConfigMap
 metadata:
   name: argocd-cm
