@@ -1,0 +1,7 @@
+{
+  "cluster": {
+    "name": "test",
+    "url": "https://api.k8s.test.plint.dev"
+  },
+  "destination_project": "test"
+}
