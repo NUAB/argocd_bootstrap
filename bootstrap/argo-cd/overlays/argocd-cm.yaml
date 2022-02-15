@@ -24,6 +24,7 @@ data:
           - Devies
           - Admins
           - PlintInternal
+          - freelancer-experience
 kind: ConfigMap
 metadata:
   name: argocd-cm
