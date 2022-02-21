@@ -1,10 +1,11 @@
-apiVersion: fluentbit.fluent.io/v1alpha2
-kind: ClusterFilter
+apiVersion: logging.kubesphere.io/v1alpha2
+kind: Filter
 metadata:
   name: kubernetes
+  namespace: kubesphere-logging-system
   labels:
-    fluentbit.fluent.io/enabled: "true"
-    fluentbit.fluent.io/component: logging
+    logging.kubesphere.io/enabled: "true"
+    logging.kubesphere.io/component: logging
 spec:
   match: kube.*
   filters:
@@ -30,3 +31,6 @@ spec:
           - kubernetes_*
         nestUnder: kubernetes
         removePrefix: kubernetes_
+  © 2022 GitHub, Inc.
+  Terms
+  Privacy
