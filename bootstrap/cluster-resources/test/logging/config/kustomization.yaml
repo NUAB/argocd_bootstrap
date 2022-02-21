@@ -6,7 +6,7 @@ resources:
   - fluentbit-config.yaml
   - input-tail.yaml
   - filter-kubernetes.yaml
-  - output-forward.yaml
+  - output-dummy.yaml
   - filter-containerd.yaml
   - fluentbit-containerd-config.yaml
 
