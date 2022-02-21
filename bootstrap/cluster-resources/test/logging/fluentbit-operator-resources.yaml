@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fluentbit-operator
+  namespace: kubesphere-logging-system
+spec:
+  template:
+    spec:
+      initContainers:
+      - name: setenv
+        resources:
+          limits:
+            cpu: 10m
+            memory: 10Mi
+          requests:
+            cpu: 10m
+            memory: 5Mi

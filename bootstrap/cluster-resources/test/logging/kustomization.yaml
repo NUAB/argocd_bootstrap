@@ -5,5 +5,8 @@ resources:
   - https://raw.githubusercontent.com/kubesphere/fluentbit-operator/release-0.12/manifests/setup/setup.yaml
   - config
 
+patchesStrategicMerge:
+  - fluentbit-operator-resources.yaml
+
 namespace: logging
 
