@@ -128,7 +128,7 @@ metadata:
   labels:
     instance: primary
   name: kube-state-metrics-monitor
-  namespace: kube-system
+  namespace: grafana-agent
 spec:
   jobLabel: integrations/kubernetes/kube-state-metrics
   selector:
@@ -136,7 +136,7 @@ spec:
       app.kubernetes.io/name: kube-state-metrics
   namespaceSelector:
     matchNames:
-      - kube-system
+      - grafana-agent
   endpoints:
     - port: http
       interval: 60s
@@ -161,7 +161,7 @@ metadata:
     app.kubernetes.io/instance: ksm
     app.kubernetes.io/version: "2.2.4"
   name: ksm-kube-state-metrics
-  namespace: kube-system
+  namespace: grafana-agent
 imagePullSecrets:
   [ ]
 ---
@@ -329,13 +329,13 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: ksm-kube-state-metrics
-    namespace: kube-system
+    namespace: grafana-agent
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: ksm-kube-state-metrics
-  namespace: kube-system
+  namespace: grafana-agent
   labels:
     app.kubernetes.io/component: metrics
     app.kubernetes.io/part-of: kube-state-metrics
@@ -360,7 +360,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ksm-kube-state-metrics
-  namespace: kube-system
+  namespace: grafana-agent
   labels:
     app.kubernetes.io/component: metrics
     app.kubernetes.io/part-of: kube-state-metrics
