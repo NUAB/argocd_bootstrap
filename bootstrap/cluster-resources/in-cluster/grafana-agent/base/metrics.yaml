@@ -12,10 +12,10 @@ spec:
       basicAuth:
         username:
           name: prometheus
-          key: USERNAME
+          key: user
         password:
           name: prometheus
-          key: API_KEY
+          key: password
 
   # Supply an empty namespace selector to look in all namespaces. Remove
   # this to only look in the same namespace as the MetricsInstance CR
