@@ -3,7 +3,7 @@ kind: Kustomization
 
 resources:
   - https://raw.githubusercontent.com/kubesphere/fluentbit-operator/release-0.12/manifests/setup/setup.yaml
-  - config/fluentbit-config.yaml
+  - config
 
 namespace: logging
 
