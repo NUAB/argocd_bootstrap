@@ -11,6 +11,9 @@ metadata:
   namespace: github-runners
 spec:
   template:
+    metadata:
+      annotations:
+        "cluster-autoscaler.kubernetes.io/safe-to-evict": "false"
     spec:
       organization: NUAB
       image: summerwind/actions-runner-dind
