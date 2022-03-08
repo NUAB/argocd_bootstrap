@@ -5,6 +5,4 @@ resources:
 - external-dns
 - github-runners
 - deliverybot
-- grafana-agent
-
-# TODO Define applications?
+- ../../../common/grafana-agent
