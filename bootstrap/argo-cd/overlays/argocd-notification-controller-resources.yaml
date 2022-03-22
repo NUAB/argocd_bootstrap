@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: argocd-applicationset-controller
+  name: argocd-notifications-controller
 spec:
   template:
     spec:
       containers:
-        - name: argocd-applicationset-controller
+        - name: argocd-notifications-controller
           resources:
             requests:
               memory: "128Mi"

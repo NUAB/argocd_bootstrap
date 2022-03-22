@@ -11,3 +11,9 @@ spec:
             requests:
               memory: "128Mi"
               cpu: "100m"
+      initContainers:
+        - name: copyutil
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
