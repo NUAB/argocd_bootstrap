@@ -6,7 +6,7 @@ metadata:
   namespace: github-runners
   labels:
     app.kubernetes.io/name: actions-runner-controller
-    app.kubernetes.io/version: "0.20.3"
+    app.kubernetes.io/version: "0.22.0"
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -116,7 +116,7 @@ metadata:
   namespace: github-runners
   labels:
     app.kubernetes.io/name: actions-runner-controller
-    app.kubernetes.io/version: "0.20.3"
+    app.kubernetes.io/version: "0.22.0"
 spec:
   type: NodePort
   ports:
@@ -135,7 +135,7 @@ metadata:
   namespace: github-runners
   labels:
     app.kubernetes.io/name: actions-runner-controller
-    app.kubernetes.io/version: "0.20.3"
+    app.kubernetes.io/version: "0.22.0"
 spec:
   replicas: 1
   selector:
@@ -162,7 +162,7 @@ spec:
                   key: GITHUB_WEBHOOK_SECRET_TOKEN
                   name: github-webhook-server
                   optional: false
-          image: "summerwind/actions-runner-controller:v0.20.3"
+          image: "summerwind/actions-runner-controller:v0.22.0"
           name: github-webhook-server
           imagePullPolicy: IfNotPresent
           ports:

@@ -22,18 +22,11 @@ spec:
       ephemeral: true
       resources:
         limits:
-          cpu: "2"
-          memory: "5Gi"
-        requests:
-          cpu: "1"
-          memory: "2Gi"
-      dockerdContainerResources:
-        limits:
-          cpu: "2"
+          cpu: "4"
           memory: "6Gi"
         requests:
-          cpu: "1"
-          memory: "2Gi"
+          cpu: "3"
+          memory: "5Gi"
       tolerations:
         - key: tasks
           operator: "Equal"
