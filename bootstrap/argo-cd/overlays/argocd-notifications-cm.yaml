@@ -532,6 +532,13 @@ data:
   service.teams: |
     recipientUrls:
       channelName: $channel-teams-url
+  subscriptions: |
+    # subscription for on-sync-status-unknown trigger notifications
+    - recipients:
+      - teams:Argo CD
+      triggers:
+      - on-sync-failed
+      - on-health-degraded
 kind: ConfigMap
 metadata:
   name: argocd-notifications-cm
