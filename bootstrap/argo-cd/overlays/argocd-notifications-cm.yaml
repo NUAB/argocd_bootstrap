@@ -539,6 +539,9 @@ data:
       triggers:
       - on-sync-failed
       - on-health-degraded
+      - on-deployed
+      - on-sync-succeeded
+      - on-sync-status-unknown
 kind: ConfigMap
 metadata:
   name: argocd-notifications-cm
