@@ -3,7 +3,7 @@ kind: Kustomization
 
 resources:
   - base/argocd-ns.yaml
-  - https://raw.githubusercontent.com/argoproj/argo-cd/v2.3.1/manifests/install.yaml
+  - base/install_v2.3.1.yaml
   - base/argocd-ui-ingress.yaml
   - base/argocd-secrets.yaml
   - base/argocd-notifications-secret.yaml
