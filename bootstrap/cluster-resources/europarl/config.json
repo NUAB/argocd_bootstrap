@@ -1,0 +1,7 @@
+{
+  "cluster": {
+    "name": "europarl",
+    "url": "https://api.k8s.europarl.plint.app"
+  },
+  "destination_project": "production"
+}

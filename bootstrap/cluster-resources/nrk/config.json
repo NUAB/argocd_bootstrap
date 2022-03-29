@@ -1,0 +1,7 @@
+{
+  "cluster": {
+    "name": "nrk",
+    "url": "https://api.k8s.nrk.plint.app"
+  },
+  "destination_project": "production"
+}

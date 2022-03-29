@@ -1,0 +1,7 @@
+{
+  "cluster": {
+    "name": "mps",
+    "url": "https://api.k8s.mps.plint.app"
+  },
+  "destination_project": "production"
+}
