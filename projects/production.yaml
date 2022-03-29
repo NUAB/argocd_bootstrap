@@ -14,6 +14,12 @@ spec:
   destinations:
     - namespace: '*'
       server: 'https://api.k8s.plint.io'
+    - namespace: '*'
+      server: 'https://api.k8s.europarl.plint.app'
+    - namespace: '*'
+      server: 'https://api.k8s.mps.plint.app'
+    - namespace: '*'
+      server: 'https://api.k8s.nrk.plint.app'
   namespaceResourceWhitelist:
     - group: '*'
       kind: '*'
