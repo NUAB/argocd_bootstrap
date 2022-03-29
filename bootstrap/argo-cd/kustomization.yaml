@@ -13,6 +13,7 @@ patchesStrategicMerge:
   - overlays/argocd-notifications-cm.yaml
   - overlays/argocd-ssh-known-hosts-cm.yaml
   - overlays/argocd-cmd-params-cm.yaml
+  - overlays/argocd-notifications-secret.yaml
   - overlays/argocd-server-service.yaml
   - overlays/argocd-repo-server-resources.yaml
   - overlays/argocd-server-resources.yaml
