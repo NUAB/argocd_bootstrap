@@ -531,11 +531,11 @@ data:
       when: app.status.operationState.phase in ['Succeeded']
   service.teams: |
     recipientUrls:
-      channelName: $channel-teams-url
+      continuousDeployment: $ARGOCD_TEAMS_WEBHOOK
   subscriptions: |
     # subscription for on-sync-status-unknown trigger notifications
     - recipients:
-      - teams:channelName
+      - teams:continuousDeployment
       triggers:
       - on-sync-failed
       - on-health-degraded
