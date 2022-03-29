@@ -535,7 +535,7 @@ data:
   subscriptions: |
     # subscription for on-sync-status-unknown trigger notifications
     - recipients:
-      - teams:Continuous Deployment
+      - teams:channelName
       triggers:
       - on-sync-failed
       - on-health-degraded
