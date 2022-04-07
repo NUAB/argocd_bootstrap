@@ -4,16 +4,16 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-options: PruneLast=true
     argocd.argoproj.io/sync-wave: "-2"
-  name: production
+  name: europarl
   namespace: argocd
 spec:
   clusterResourceWhitelist:
     - group: '*'
       kind: '*'
-  description: production project
+  description: europarl project
   destinations:
     - namespace: '*'
-      server: 'https://api.k8s.plint.io'
+      server: 'https://api.k8s.europarl.plint.app'
   namespaceResourceWhitelist:
     - group: '*'
       kind: '*'
@@ -27,13 +27,13 @@ kind: ApplicationSet
 metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "0"
-  name: production
+  name: europarl
   namespace: argocd
 spec:
   generators:
     - git:
         directories:
-          - path: apps/production/*
+          - path: apps/europarl/*
         repoURL: git@github.com:NUAB/argocd_applications.git
         revision: HEAD
         requeueAfterSeconds: 20
@@ -50,17 +50,17 @@ spec:
       labels:
         app.kubernetes.io/managed-by: argocd
         app.kubernetes.io/name: '{{ path.basename }}'
-      name: 'production-{{ path.basename }}'
+      name: 'europarl-{{ path.basename }}'
     spec:
       destination:
         namespace: default
-        server: 'https://api.k8s.plint.io'
+        server: 'https://api.k8s.europarl.plint.app'
       ignoreDifferences:
         - group: argoproj.io
           jsonPointers:
             - /status
           kind: Application
-      project: production
+      project: europarl
       source:
         path: '{{ path }}'
         repoURL: git@github.com:NUAB/argocd_applications.git
