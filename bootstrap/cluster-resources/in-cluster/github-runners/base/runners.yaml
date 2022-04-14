@@ -22,8 +22,8 @@ spec:
       ephemeral: true
       resources:
         limits:
-          cpu: "4"
-          memory: "6Gi"
+          cpu: "3"
+          memory: "5Gi"
         requests:
           cpu: "3"
           memory: "5Gi"
@@ -61,7 +61,7 @@ spec:
     - githubEvent: { }
       duration: "30m"
   minReplicas: 0
-  maxReplicas: 10
+  maxReplicas: 8
   metrics:
     - type: PercentageRunnersBusy
       scaleUpThreshold: '0.75'    # The percentage of busy runners at which the number of desired runners are re-evaluated to scale up
