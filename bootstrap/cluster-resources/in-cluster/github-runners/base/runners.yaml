@@ -34,6 +34,9 @@ spec:
           effect: NoSchedule
       nodeSelector:
         "tasks": "runners"
+      env:
+        - name: DOCKER_REGISTRY_MIRROR
+          value: "https://registry.infra.plint.dev"
       volumeMounts:
         - mountPath: home/runner/.buildtools.yaml
           name: buildtools-config

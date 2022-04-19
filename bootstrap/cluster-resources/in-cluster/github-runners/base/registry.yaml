@@ -1,0 +1,85 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: registry
+  name: registry
+  annotations:
+    kubernetes.io/change-cause: "${TIMESTAMP} Deployed commit id: ${COMMIT}"
+spec:
+  selector:
+    matchLabels:
+      app: registry
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: registry
+    spec:
+      tolerations:
+        - key: kubernetes.io/role
+          operator: "Equal"
+          value: node
+          effect: NoSchedule
+      containers:
+        - name: registry
+          resources:
+            requests:
+              cpu: 10m
+              memory: 20Mi
+            limits:
+              cpu: 100m
+              memory: 200Mi
+          imagePullPolicy: IfNotPresent
+          image: registry
+          ports:
+            - name: https
+              containerPort: 5000
+      restartPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: registry
+spec:
+  ports:
+    - port: 443
+      name: https
+      protocol: TCP
+      targetPort: https
+  selector:
+    app: registry
+  type: NodePort
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/group.name: registry
+    alb.ingress.kubernetes.io/scheme: internal
+    alb.ingress.kubernetes.io/backend-protocol: HTTP
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}]'
+    alb.ingress.kubernetes.io/healthcheck-path: '/'
+  name: registry
+spec:
+  rules:
+    - host: registry.infra.plint.dev
+      http:
+        paths:
+          - backend:
+              service:
+                name: registry
+                port:
+                  name: "https"
+            pathType: ImplementationSpecific
+  tls:
+    - hosts:
+        - registry.infra.plint.dev
+
