@@ -27,6 +27,9 @@ spec:
           effect: NoSchedule
       containers:
         - name: registry
+          env:
+            - name: REGISTRY_PROXY_REMOTEURL
+              value: 'https://registry-1.docker.io'
           resources:
             requests:
               cpu: 10m
