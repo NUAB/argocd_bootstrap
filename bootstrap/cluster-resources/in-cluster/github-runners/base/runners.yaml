@@ -20,6 +20,7 @@ spec:
       dockerdWithinRunnerContainer: true
       workDir: /home/runner/work
       ephemeral: true
+      dockerRegistryMirror: "https://registry.infra.plint.dev"
       resources:
         limits:
           cpu: "3"
@@ -34,9 +35,6 @@ spec:
           effect: NoSchedule
       nodeSelector:
         "tasks": "runners"
-      env:
-        - name: DOCKER_REGISTRY_MIRROR
-          value: "https://registry.infra.plint.dev"
       volumeMounts:
         - mountPath: home/runner/.buildtools.yaml
           name: buildtools-config
@@ -61,8 +59,12 @@ spec:
   scaleTargetRef:
     name: runners
   scaleUpTriggers:
-    - githubEvent: { }
-      duration: "30m"
+  - githubEvent:
+      checkRun:
+        types: ["created"]
+        status: "queued"
+    amount: 1
+    duration: "5m"
   minReplicas: 0
   maxReplicas: 8
   metrics:
