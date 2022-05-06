@@ -32,8 +32,8 @@ metadata:
 spec:
   generators:
     - git:
-        files:
-          - path: apps/test/*/*/deploy.yaml
+        directories:
+          - path: apps/test/*/*
         repoURL: git@github.com:NUAB/argocd_applications.git
         revision: HEAD
         requeueAfterSeconds: 20
@@ -49,8 +49,8 @@ spec:
     metadata:
       labels:
         app.kubernetes.io/managed-by: argocd
-        app.kubernetes.io/name: '{{ path[2] }}-{{ path[3] }}'
-      name: '{{ path[2] }}-{{ path[3] }}'
+        app.kubernetes.io/name: '{{ path[2] }}-{{ path.basename }}'
+      name: '{{ path[2] }}-{{ path.basename }}'
     spec:
       destination:
         namespace: '{{ path[2] }}'
