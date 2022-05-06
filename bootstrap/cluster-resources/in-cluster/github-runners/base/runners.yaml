@@ -23,10 +23,10 @@ spec:
       dockerRegistryMirror: "https://registry.infra.plint.dev"
       resources:
         limits:
-          cpu: "2.75"
+          cpu: "2750m"
           memory: "7Gi"
         requests:
-          cpu: "2.75"
+          cpu: "2750m"
           memory: "6Gi"
       tolerations:
         - key: tasks
