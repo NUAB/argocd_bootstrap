@@ -13,5 +13,8 @@ patchesStrategicMerge:
   - patch/namespace-delete.yaml
   - patch/certificates.yaml
   - patch/webhook-config.yaml
+  - patch/runners-crd.yaml
+  - patch/runnersdeployment-crd.yaml
+  - patch/runnerreplicasets-crd.yaml
 
 namespace: github-runners
