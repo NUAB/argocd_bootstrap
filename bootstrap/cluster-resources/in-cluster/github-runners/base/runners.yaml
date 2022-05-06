@@ -16,7 +16,7 @@ spec:
         "cluster-autoscaler.kubernetes.io/safe-to-evict": "false"
     spec:
       organization: NUAB
-      image: summerwind/actions-runner-dind
+      image: 280918118349.dkr.ecr.eu-west-1.amazonaws.com/github-action-runner:latest
       dockerdWithinRunnerContainer: true
       workDir: /home/runner/work
       ephemeral: true
