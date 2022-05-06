@@ -41,6 +41,9 @@ spec:
           subPath: .buildtools.yaml
         - mountPath: home/runner/.ssh
           name: ssh-secret
+      envFrom:
+        - secretRef:
+            name: test-environments
       volumes:
         - name: buildtools-config
           secret:
