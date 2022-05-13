@@ -18,13 +18,8 @@ data:
         clientID: fb12b314b0d4e211b608
         clientSecret: $dex-client-secret:dex.github.clientSecret
         orgs:
-        - name: NUAB
-          teams:
-          - DevOps
-          - Devies
-          - Admins
-          - PlintInternal
-          - freelancer-experience
+         - name: NUAB
+        loadAllGroups: true
 kind: ConfigMap
 metadata:
   name: argocd-cm
