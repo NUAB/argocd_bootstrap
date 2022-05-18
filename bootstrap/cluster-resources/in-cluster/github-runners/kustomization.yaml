@@ -6,6 +6,7 @@ resources:
   - base/runners.yaml
   - base/webhookserver.yaml
   - base/secrets.yaml
+  - base/registry.yaml
 
 patchesStrategicMerge:
   - patch/rbac-proxy-resources.yaml
