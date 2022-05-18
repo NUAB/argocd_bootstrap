@@ -67,12 +67,13 @@ spec:
         types: ["created"]
         status: "queued"
     amount: 1
-    duration: "5m"
+    duration: "20m" # Make sure this is at least as large as a workflow job defined
   minReplicas: 0
   maxReplicas: 16
+  scaleDownDelaySecondsAfterScaleOut: 60
   metrics:
     - type: PercentageRunnersBusy
       scaleUpThreshold: '0.75'    # The percentage of busy runners at which the number of desired runners are re-evaluated to scale up
       scaleDownThreshold: '0.3'   # The percentage of busy runners at which the number of desired runners are re-evaluated to scale down
-      scaleUpFactor: '1.4'        # The scale up multiplier factor applied to desired count
-      scaleDownFactor: '0.7'      # The scale down multiplier factor applied to desired count
+      scaleUpAdjustment: 7        # The scale up runner count added to desired count
+      scaleDownAdjustment: 1      # The scale down runner count subtracted from the desired count
